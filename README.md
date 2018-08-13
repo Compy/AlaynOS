@@ -20,6 +20,8 @@ Here is what has been completed:
 - [x] UART support
 - [x] QEMU support for development
 - [x] Mailbox support with the VideoCore hardware
+- [x] Hardware delay support with cycle accuracy
+- [x] Support for onboard device power management
 
 ## Why?
 I believe Operating Systems now are fairly bloated. The barrier to embedded development is very high, and often times new developers in the space attempt to wrap their applications inside of Raspbian or other full-scale operating systems. With the uptick of IoT, I believe that security and ease of development can be served by taking a minimalistic approach to embedded development such that the ONLY process running on the hardware is the primary process that the device serves.
