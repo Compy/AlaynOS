@@ -26,8 +26,6 @@
 void main()
 {
     uint8_t countdown;
-    char buf[16];
-    uint8_t line;
 
     // Set up serial console
     uart_init();

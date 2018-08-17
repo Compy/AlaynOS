@@ -45,7 +45,7 @@ static void get_serial() {
     mbox[6] = 0;                    // value 01
     mbox[7] = MBOX_TAG_LAST;        // magic end tag
     if (mbox_call(MBOX_CH_PROP)) {
-        serial = mbox[6] << 32 | mbox[5];
+        serial = ((uint64_t)mbox[6]) << 32 | ((uint64_t)mbox[5]);
     }
 }
 

@@ -9,6 +9,7 @@
 #include "uart.h"
 #include "mbox.h"
 #include "homer.h"
+#include "sprintf.h"
 
 typedef struct {
     unsigned int magic;
