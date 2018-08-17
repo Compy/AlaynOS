@@ -1,3 +1,10 @@
+/**
+ * Various utility functions for the rest of the system.
+ * 
+ * (C) 2018 - Jimmy Lipham (http://86pixels.com)
+ * This file is subject to the GPLv2 software license. Please see LICENSE file for more details.
+ */
+
  #include <stdint.h>
 
 /* A utility function to reverse a string  */

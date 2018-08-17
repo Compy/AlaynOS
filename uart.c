@@ -1,3 +1,12 @@
+/**
+ * Provides uart (serial) console services for the rest of the system. Initialization code here is called directly
+ * from the main entry point. We use this to primarily provide debug feedback to the implementer, though I suppose
+ * it could do something useful...
+ * 
+ * (C) 2018 - Jimmy Lipham (http://86pixels.com)
+ * This file is subject to the GPLv2 software license. Please see LICENSE file for more details.
+ */
+
 #include "gpio.h"
 
 /* Auxilary mini UART registers */

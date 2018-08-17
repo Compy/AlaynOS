@@ -1,3 +1,12 @@
+/**
+ * Power handling functions for the entire system. This communicates with the raspberry pi in order to set
+ * hardware peripherals into a low power state (off) or perform jumps as needed for system resets by way
+ * of the watchdog timer.
+ * 
+ * (C) 2018 - Jimmy Lipham (http://86pixels.com)
+ * This file is subject to the GPLv2 software license. Please see LICENSE file for more details.
+ */
+
 #include "gpio.h"
 #include "mbox.h"
 #include "delays.h"

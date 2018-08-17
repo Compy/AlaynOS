@@ -1,3 +1,11 @@
+/**
+ * Implements cycle-accurate delays for the rest of the system. We use both software level
+ * delays and hardware level delays with SYSTMR.
+ * 
+ * (C) 2018 - Jimmy Lipham (http://86pixels.com)
+ * This file is subject to the GPLv2 software license. Please see LICENSE file for more details.
+ */
+
 #include "gpio.h"
 
 #define SYSTMR_LO       ((volatile unsigned int*)(MMIO_BASE + 0x00003004))

@@ -1,5 +1,11 @@
-#include <stdint.h>
+/**
+ * Hardware specific information functions for the Raspberry Pi 3.
+ * 
+ * (C) 2018 - Jimmy Lipham (http://86pixels.com)
+ * This file is subject to the GPLv2 software license. Please see LICENSE file for more details.
+ */
 
+#include <stdint.h>
 #include "rpi.h"
 #include "mbox.h"
 
@@ -17,6 +23,10 @@ uint32_t rpi_freq_cpu() {
 
 uint64_t rpi_serial() {
     return serial;
+}
+
+uint8_t is_emulating() {
+    return (rpi_serial() == 0) ? 1 : 0;
 }
 
 enum MB_BUFF { BUFSIZE=0, MB_REQ_RES, \

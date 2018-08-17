@@ -1,4 +1,14 @@
 /**
+ * Basic sprintf implementation. This provides (s)printf logging facilities and utility functions for
+ * the rest of the system entirely. This eliminates the need for libc.
+ * 
+ * (C) 2018 - Jimmy Lipham (http://86pixels.com)
+ * This file is subject to the GPLv2 software license. Please see LICENSE file for more details.
+ */
+
+
+
+/**
  * minimal sprintf implementation
  */
 unsigned int vsprintf(char *dst, char* fmt, __builtin_va_list args)

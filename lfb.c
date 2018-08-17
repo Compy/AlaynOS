@@ -1,3 +1,11 @@
+/**
+ * Handles the frame buffer for the rest of the operating system. The initialization code here is called directly
+ * from the main entry point. This is bypassed if we're running headless with UART only.
+ * 
+ * (C) 2018 - Jimmy Lipham (http://86pixels.com)
+ * This file is subject to the GPLv2 software license. Please see LICENSE file for more details.
+ */
+
 #include "uart.h"
 #include "mbox.h"
 #include "homer.h"
@@ -112,6 +120,9 @@ void lfb_blank_color(unsigned int color) {
     }
 }
 
+/**
+ * Blank the entire screen
+ */
 void lfb_blank() {
     lfb_blank_color(0);
 }
@@ -189,7 +200,7 @@ void lfb_testpattern() {
 }
 
 /**
- * Display a string
+ * Display a string in printf fashion
  */
 void lfb_printf(char *fmt, ...) {
     __builtin_va_list args;
