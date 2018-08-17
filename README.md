@@ -25,3 +25,11 @@ Here is what has been completed:
 
 ## Why?
 I believe Operating Systems now are fairly bloated. The barrier to embedded development is very high, and often times new developers in the space attempt to wrap their applications inside of Raspbian or other full-scale operating systems. With the uptick of IoT, I believe that security and ease of development can be served by taking a minimalistic approach to embedded development such that the ONLY process running on the hardware is the primary process that the device serves.
+
+## Special Thanks
+There are a ton of people whose materials have been (and continue to be) extremely helpful throughout the process of creating this. Here's a list:
+
+- dwelch67
+- bztsrc
+- boochow
+- jiksteri
