@@ -8,6 +8,8 @@
 #include "sprintf.h"
 #include <stdint.h>
 
+#define printf uart_printf
+
 void main()
 {
     uint8_t countdown;
@@ -23,34 +25,18 @@ void main()
     lfb_showpicture();
 
     rpi_init();
+    // CLEAR SCREEN
+    printf("\033[2J");
+    ////////////////
+    printf("Welcome to AlaynOS!\n");
+    printf("Board SN: %x\n", rpi_serial());
+    printf("CPU Clock Speed: %d MHz\n", rpi_freq_cpu() / 1000000);
 
-    /*
-    uart_puts("Clock speed: ");
-    uart_puts(itoa(rpi_freq_cpu(), buf, 10));
-    uart_puts(" (CPU) ");
-    uart_puts(itoa(rpi_freq_core(), buf, 10));
-    uart_puts(" (CORE)\n");
-    */
-
-    printf("Hello world %x\n", rpi_serial());
-
-
-    lfb_print(0, line, COLOR_GRAY, "Board SN: ");
-    lfb_print(10, line, COLOR_WHITE, dec_to_hex64(rpi_serial(), buf));
-
-    lfb_print(0, ++line, COLOR_GRAY, "CPU Clock Speed: ");
-    lfb_print(17, line, COLOR_WHITE, itoa(rpi_freq_cpu() / 1000000, buf, 10));
-    lfb_print(21, line, COLOR_WHITE, "MHz");
-
-    lfb_print(0, ++line, COLOR_CYAN, "Welcome to AlaynOS!");
-
-    wait_msec(2000000);
-
-    for (countdown = 100; countdown > 0; countdown--) {
-        lfb_print(13, ++line, 0xFF0000, "  ");
-        lfb_print(0, line, COLOR_WHITE, "Resetting in ");
-        lfb_print(13, line, COLOR_WHITE, itoa(countdown, buf, 10));
-        lfb_print(16, line, COLOR_WHITE, "seconds...");
+    for (countdown = 10; countdown > 0; countdown--) {
+        if (countdown < 10) {
+            printf("%c[2K\r", 27);
+        }
+        printf("Resetting in %d second(s)", countdown);
         wait_msec(1000000);
     }
     reset();

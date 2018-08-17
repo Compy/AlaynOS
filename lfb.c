@@ -191,7 +191,7 @@ void lfb_testpattern() {
 /**
  * Display a string
  */
-void printf(char *fmt, ...) {
+void lfb_printf(char *fmt, ...) {
     __builtin_va_list args;
     __builtin_va_start(args, fmt);
     // we don't have memory allocation yet, so we

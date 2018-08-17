@@ -14,6 +14,8 @@
 #define AUX_MU_STAT     ((volatile unsigned int*)(MMIO_BASE+0x00215064))
 #define AUX_MU_BAUD     ((volatile unsigned int*)(MMIO_BASE+0x00215068))
 
+extern volatile unsigned char _end;
+
 /**
  * Set baud rate and characteristics (115200 8N1) and map to GPIO
  */
@@ -89,4 +91,19 @@ void uart_hex(unsigned int d) {
         n += n > 9 ? 0x37 : 0x30;
         uart_send(n);
     }
+}
+
+/**
+ * Display a string
+ */
+void uart_printf(char *fmt, ...) {
+    __builtin_va_list args;
+    __builtin_va_start(args, fmt);
+    // we don't have memory allocation yet, so we
+    // simply place our string after our code
+    char *s = (char*)&_end;
+    // use sprintf to format our string
+    vsprintf(s,fmt,args);
+    // print out as usual
+    uart_puts(s);
 }

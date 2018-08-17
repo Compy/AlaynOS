@@ -10,4 +10,4 @@ void lfb_blank();
 void lfb_blank_color(unsigned int color);
 void lfb_blankline(int line);
 void lfb_testpattern();
-void printf(char *fmt, ...);
+void lfb_printf(char *fmt, ...);
