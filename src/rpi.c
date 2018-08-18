@@ -11,6 +11,7 @@
 
 static uint32_t freq_cpu  = 0;
 static uint32_t freq_core = 0;
+static uint32_t max_cpu_freq = 0;
 static uint64_t serial = 0;
 
 uint32_t rpi_freq_core() {
@@ -19,6 +20,10 @@ uint32_t rpi_freq_core() {
 
 uint32_t rpi_freq_cpu() {
     return freq_cpu;
+}
+
+uint32_t rpi_max_cpu_freq() {
+    return max_cpu_freq;
 }
 
 uint64_t rpi_serial() {
@@ -67,6 +72,19 @@ static void get_clock_value() {
     if (mbox_call(MBOX_CH_PROP)) {
         freq_cpu = mbox[6];
         freq_core = mbox[11];
+    }
+
+    mbox[0] = 8*4;                  // msg len
+    mbox[1] = MBOX_REQUEST;         // msg type
+    mbox[2] = MB_TAG_GET_MAX_CLOCK_RATE;   // request type
+    mbox[3] = 8;                    // buffer size
+    mbox[4] = 8;                    // response 0
+    mbox[5] = CLKID_ARM;                    // clear output buf (value 00)
+    mbox[6] = 0;                    // value 01
+    mbox[7] = MBOX_TAG_LAST;        // magic end tag
+
+    if (mbox_call(MBOX_CH_PROP)) {
+        max_cpu_freq = mbox[4];
     }
 }
 

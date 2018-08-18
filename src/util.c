@@ -77,3 +77,10 @@ char* dec_to_hex64(uint64_t d, char* str) {
     }
     return str;
 }
+
+void str_clear(char str[], int len) {
+    int i;
+    for (i = 0; i < len; i++) {
+        str[i] = '\0';
+    }
+}

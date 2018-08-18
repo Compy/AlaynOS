@@ -16,7 +16,7 @@
  */
 void wait_cycles(unsigned int n) {
     if (n) {
-        while (n--) { asm volatile("nop"); }
+        while (n--) { __asm__ volatile("nop"); }
     }
 }
 
@@ -26,12 +26,12 @@ void wait_cycles(unsigned int n) {
 void wait_msec(unsigned int n) {
     register unsigned long f, t, r;
     // Get the current counter frequency
-    asm volatile ("mrs %0, cntfrq_el0" : "=r"(f));
+    __asm__ volatile ("mrs %0, cntfrq_el0" : "=r"(f));
     // Read the current counter
-    asm volatile ("mrs %0, cntpct_el0" : "=r"(t));
+    __asm__ volatile ("mrs %0, cntpct_el0" : "=r"(t));
     // calculate expire value for counter
     t += ((f/1000)*n)/1000;
-    do { asm volatile ("mrs %0, cntpct_el0" : "=r"(r)); } while (r < t);
+    do { __asm__ volatile ("mrs %0, cntpct_el0" : "=r"(r)); } while (r < t);
 }
 
 /**

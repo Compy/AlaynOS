@@ -1,6 +1,6 @@
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -O2 -ffreestanding -nostdlib -nostartfiles
+CFLAGS = -std=c99 -Wall -O2 -nostdlib -nostartfiles
 
 all: clean 
 	+$(MAKE) -C src

@@ -2,7 +2,8 @@ SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 INC += -I.
 INC += -I../include
-CFLAGS = $(INC) -Wall -O2 -ffreestanding -nostdlib -nostartfiles
+INC += -I/usr/local/Caskroom/gcc-arm-embedded/7-2018-q2-update/gcc-arm-none-eabi-7-2018-q2-update/arm-none-eabi/include
+CFLAGS = $(INC) -std=c99 -Wall -O2 -nostdlib -nostartfiles
 
 all: clean kernel8.img
 

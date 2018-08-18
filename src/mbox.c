@@ -22,14 +22,14 @@ int mbox_call(unsigned char ch) {
     // Set the appropriate bit given the channel specified
     unsigned int r = (((unsigned int)((unsigned long) &mbox) & ~0xF) | (ch & 0xF));
     // Wait until we can write to the mailbox
-    do { asm volatile("nop"); } while (*MBOX_STATUS & MBOX_FULL);
+    do { __asm__ volatile("nop"); } while (*MBOX_STATUS & MBOX_FULL);
 
     // Write the maddr of our message to the mailbox with channel identifier
     *MBOX_WRITE = r;
 
     // Spin wait for the response
     while (1) {
-        do { asm volatile("nop"); } while (*MBOX_STATUS & MBOX_EMPTY);
+        do { __asm__ volatile("nop"); } while (*MBOX_STATUS & MBOX_EMPTY);
 
         // Check if its actually a response to our message
         if (r == *MBOX_READ) {
@@ -46,7 +46,7 @@ int mbox_call(unsigned char ch) {
  */
 void mailbox_write(MAILBOX_CHANNEL chan, uint32_t msg) {
     // Wait until we can write
-    do { asm volatile("nop"); } while (*MBOX1_STATUS & MBOX_FULL);
+    do { __asm__ volatile("nop"); } while (*MBOX1_STATUS & MBOX_FULL);
 
     // Write the message and the given channel to the input section of memory
     *MBOX1_FIFO = (msg << 4) | chan;
